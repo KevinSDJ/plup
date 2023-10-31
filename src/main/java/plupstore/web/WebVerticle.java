@@ -1,7 +1,6 @@
 package plupstore.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static plupstore.web.Controller.createRouter;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 
@@ -9,18 +8,7 @@ public class WebVerticle extends AbstractVerticle {
     
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
-        vertx.createHttpServer().requestHandler(req -> {
-            String data=null;
-            try {
-                data= new ObjectMapper().writeValueAsString(new Person("kevin", "De jesus"));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-
-            req.response()
-              .putHeader("content-type", "application/json")
-              .end(data);
-          })
+        vertx.createHttpServer().requestHandler(createRouter(vertx))
           .listen(8080, http -> {
             if (http.succeeded()) {
               startPromise.complete();

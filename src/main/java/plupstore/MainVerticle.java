@@ -11,7 +11,10 @@ public class MainVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
 
-    vertx.deployVerticle(WebVerticle.class,new DeploymentOptions(),(AsyncResult<String> rs)->{
+    vertx.deployVerticle(
+      WebVerticle.class,
+      new DeploymentOptions(),
+      (AsyncResult<String> rs)->{
       if(rs.succeeded()){
         System.out.println("verticle deploy: "+ rs.result());
         startPromise.complete();
