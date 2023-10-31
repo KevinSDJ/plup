@@ -54,6 +54,11 @@
       <version>2.15.3</version>
     </dependency>
     <dependency>
+    <groupId>io.vertx</groupId>
+      <artifactId>vertx-web-templ-thymeleaf</artifactId>
+      <version>3.9.0</version>
+    </dependency>
+    <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-junit5</artifactId>
       <scope>test</scope>
